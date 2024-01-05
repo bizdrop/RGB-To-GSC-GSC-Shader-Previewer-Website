@@ -1,6 +1,6 @@
 # RGB To GSC | GSC Shader Previewer Website
 
-I combined 2 websides so there just a click apart 
+I combined 2 websites so there just a click apart 
 
 ---
 
