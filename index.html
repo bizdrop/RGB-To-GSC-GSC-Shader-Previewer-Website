@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGB to GSC Converter</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        input {
+            width: 50px;
+        }
+
+        #hex {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>RGB to GSC Converter</h1>
+
+    <div>
+        <label for="r">Red:</label>
+        <input type="range" id="r" min="0" max="255" value="0">
+        <output id="r_out">0</output>
+    </div>
+
+    <div>
+        <label for="g">Green:</label>
+        <input type="range" id="g" min="0" max="255" value="0">
+        <output id="g_out">0</output>
+    </div>
+
+    <div>
+        <label for="b">Blue:</label>
+        <input type="range" id="b" min="0" max="255" value="0">
+        <output id="b_out">0</output>
+    </div>
+
+    <div id="hex"></div>
+    
+    <div>
+        <a href="index2.html">Next Page</a>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#hex").append("<br/><font size='1px'>GSC RGB Selector by thahitcrew<br/>Automatically convert RGB values to GSC format Online!</font>");
+        });
+
+        var r = $('#r'),
+            g = $('#g'),
+            b = $('#b'),
+            r_out = $('#r_out'),
+            g_out = $('#g_out'),
+            b_out = $('#b_out'),
+            hex_out = $('#hex');
+
+        r.change(function () { setColor(); r_out.val(r.val()); });
+        r.on('input', function () { setColor(); r_out.val(r.val()); });
+
+        g.change(function () { setColor(); g_out.val(g.val()); });
+        g.on('input', function () { setColor(); g_out.val(g.val()); });
+
+        b.change(function () { setColor(); b_out.val(b.val()); });
+        b.on('input', function () { setColor(); b_out.val(b.val()); });
+
+        function setColor() {
+            var Rval = parseFloat((r_out.val() / 255.00).toFixed(3));
+            var Gval = parseFloat((g_out.val() / 255.00).toFixed(3));
+            var Bval = parseFloat((b_out.val() / 255.00).toFixed(3));
+            var hex = "R: " + Rval + " " + "G: " + Gval + " " + "B: " + Bval;
+
+            var r_hex = parseInt(r.val(), 10).toString(16),
+                g_hex = parseInt(g.val(), 10).toString(16),
+                b_hex = parseInt(b.val(), 10).toString(16),
+                hex1 = "#" + pad(r_hex) + pad(g_hex) + pad(b_hex);
+
+            $('body').css("background-color", hex1);
+            hex_out.html("<font size='2px'>RGB Converted To GSC Format:</font><br/>" + hex1 + "<br/>" + hex + "<br/><font size='1px'>GSC RGB Selector by thahitcrew<br/>Automatically convert RGB values to GSC format Online!</font>");
+        }
+
+        function pad(n) {
+            return (n.length < 2) ? "0" + n : n;
+        }
+    </script>
+</body>
+</html>
